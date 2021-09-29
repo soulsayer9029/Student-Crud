@@ -64,6 +64,7 @@ const getStudentById=async(req,res)=>{
     
 }
 const updateStudent=async(req,res)=>{
+    
     try{
         const student = await Student.findByIdAndUpdate(req.user.id, req.body, {
             new: true,
@@ -73,6 +74,11 @@ const updateStudent=async(req,res)=>{
             return res.status(200).json({
                 success:true,
                 data:student
+            })
+          }else{
+            return res.status(400).json({
+                success:false,
+                message:"Invalid Update entered"
             })
           }
           
